@@ -7,7 +7,6 @@ import Crypter from '../services/Crypter';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
 import RoundedButton from '../components/RoundedButton';
 
 export default function TabOneScreen() {
@@ -22,8 +21,25 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>TabOne</Text>
+      <Text style={styles.title}>Исходное слово</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Введите текст"
+        onChangeText={(text) =>{
+          useSetinputText(text);
+          crypter.permutation(text, useSetKey, useSetAnswer)}}
+      />
+      <Text style={styles.title}>Ключ</Text>
+      <TouchableOpacity onPress={() => CopyToClipboard(key)}>
+        <Text style={styles.display}>{key}</Text>
+      </TouchableOpacity>
       
+      <Text style={styles.title}>Зашифрованный текст</Text>
+      <TouchableOpacity onPress={() => CopyToClipboard(answer)}>
+        <Text style={styles.display}>{answer}</Text>
+      </TouchableOpacity>
+      <RoundedButton text="Обновить" onPress={() => 
+        crypter.permutation(inputText, useSetKey, useSetAnswer)}></RoundedButton>
     </View>
   );
 }

@@ -25,6 +25,11 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabTwoScreen: 'two',
             },
           },
+          CryptionSelectMenu:{
+            screens: {
+              CryptionSelectMenuScreen: 'CryptionSelectMenu',
+            }
+          }
         },
       },
       Modal: 'modal',
