@@ -4,7 +4,7 @@ import MyRandomizer from "./MyRandomizer";
 class Crypter{
   
   //шифр перестановки
-  public permutation(inputString :String, setkey : Function, setAsnwer : Function){
+  public permutation(inputString :String, setKey : Function, setAsnwer : Function){
     //append 1 if cant divide by 2
     if(inputString.length%2===1){
       inputString = inputString + '1';
@@ -26,7 +26,7 @@ class Crypter{
     })
     key = key.map(function(val){return ++val});
     
-    setkey(key);
+    setKey(key);
     setAsnwer(answer);
   }
 }

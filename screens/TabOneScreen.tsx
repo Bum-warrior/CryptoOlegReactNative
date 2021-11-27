@@ -8,6 +8,7 @@ import Crypter from '../services/Crypter';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
+import RoundedButton from '../components/RoundedButton';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   let [answer, useSetAnswer] = React.useState("");
@@ -35,13 +36,11 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
       </TouchableOpacity>
       
       <Text style={styles.title}>Зашифрованный текст</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Тут будет ответ"
-        editable={false}
-        value={answer}
-      />
-      <Button title="обновить" color = "#a52a2a" onPress={() => crypter.permutation(inputText, useSetKey, useSetAnswer)}></Button>
+      <TouchableOpacity onPress={() => CopyToClipboard(answer)}>
+        <Text style={styles.display}>{answer}</Text>
+      </TouchableOpacity>
+      <RoundedButton text="Обновить" onPress={() => 
+        crypter.permutation(inputText, useSetKey, useSetAnswer)}></RoundedButton>
     </View>
   );
 }
@@ -49,8 +48,10 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 30,
+    alignItems: 'stretch',
+    justifyContent: 'flex-start',
+    
   },
   title: {
     fontSize: 20,
@@ -65,13 +66,13 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-  },btn: {
-
+    borderRadius: 8,
   },display: {
+    height: 40,
+    margin: 12,
     borderWidth: 1,
-    width: 250,
-    minHeight: 30,
-    padding: 5,
+    padding: 10,
+    borderRadius: 8,
   }
 });
 
