@@ -8,8 +8,9 @@ import Crypter from '../services/Crypter';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import RoundedButton from '../components/RoundedButton';
+import { RootTabScreenProps } from '../types';
 
-export default function TabOneScreen() {
+export default function CryptionPermutationScreen({ navigation }: RootTabScreenProps<'CryptionSelectMenu'>) {
   let [answer, useSetAnswer] = React.useState("");
   let [key, useSetKey] = React.useState("");
   let [inputText, useSetinputText] = React.useState("");

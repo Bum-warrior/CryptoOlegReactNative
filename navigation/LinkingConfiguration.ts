@@ -28,6 +28,7 @@ const linking: LinkingOptions<RootStackParamList> = {
           CryptionSelectMenu:{
             screens: {
               CryptionSelectMenuScreen: 'CryptionSelectMenu',
+              CryptionPermutationScreen: 'CryptionPermutation'
             }
           }
         },

@@ -17,6 +17,7 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import CryptionSelectMenu from '../screens/CryptionSelectMenuScreen';
+import CryptionPermutationScreen from '../screens/CryptionPermutationScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -44,6 +45,10 @@ function RootNavigator() {
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
+
+      <Stack.Group>
+        <Stack.Screen name="CryptionPermutation" component={CryptionPermutationScreen} options={{title: 'Перестановка'}}/>
+      </Stack.Group>
     </Stack.Navigator>
   );
 }
@@ -59,17 +64,17 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabTwo"
+      initialRouteName="CryptionSelectMenu"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
         name="CryptionSelectMenu"
         component={CryptionSelectMenu}
-        options={{
-          title: 'Шифрования',
+        options={({ navigation }: RootTabScreenProps<'CryptionSelectMenu'>) => ({
+          title: 'Меню',
           tabBarIcon: ({ color }) => <TabBarIcon name="navicon" color={color} />,
-        }}
+        })}
       />
 
       <BottomTab.Screen
@@ -102,6 +107,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="grav" color={color} />,
         }}
       />
+      
     </BottomTab.Navigator>
   );
 }
