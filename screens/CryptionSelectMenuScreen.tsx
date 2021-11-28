@@ -17,7 +17,7 @@ export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'C
         </Text>
       </Pressable>
       <Pressable onPress={()=>{
-        navigation.navigate('NotFound')
+        navigation.navigate('CryptionPolybius')
       }}>
         <Text style={styles.item}>
           Шифр Полибия

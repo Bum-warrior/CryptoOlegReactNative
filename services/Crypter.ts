@@ -6,6 +6,7 @@ class Crypter{
   //шифр перестановки
   public permutation(inputString :String, setKey : Function, setAsnwer : Function){
     //append 1 if cant divide by 2
+    inputString = inputString.replace(/ +/g, "_")
     if(inputString.length%2===1){
       inputString = inputString + '1';
     }

@@ -1,4 +1,3 @@
-import { EnumNumberMember } from '@babel/types';
 import * as React from 'react';
 import { Button, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import * as Clipboard from 'expo-clipboard';

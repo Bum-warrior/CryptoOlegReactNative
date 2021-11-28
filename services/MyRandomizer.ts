@@ -1,3 +1,5 @@
+import IPoint from "./IPoint";
+
 class MyRandomizer {
   static generateKey(maxNumber : number){
     let numbers : number[] = [];
@@ -14,8 +16,20 @@ class MyRandomizer {
     return rndNumbers;
   }
 
-  static getRandomInt(max: number) {
+  static getRandomInt(max: number): number {
     return Math.floor(Math.random() * max);
+  }
+
+  static shuffle2DArray(inputArray: string[][]): string[][]{
+    for(let i = 0; i < 50; i++){
+      let first : IPoint = {x: this.getRandomInt(6), y: this.getRandomInt(6)}
+      let second : IPoint = {x: this.getRandomInt(6), y: this.getRandomInt(6)}
+
+      let buffer = inputArray[first.x][first.y];
+      inputArray[first.x][first.y] = inputArray[second.x][second.y];
+      inputArray[second.x][second.y] = buffer;
+    }
+    return inputArray;
   }
 }
 

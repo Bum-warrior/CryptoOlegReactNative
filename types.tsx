@@ -18,6 +18,7 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   CryptionPermutation: undefined;
+  CryptionPolybius: undefined;
 };
 
 
@@ -30,7 +31,7 @@ export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
   CryptionSelectMenu: undefined;
-  CryptionPermutation: undefined;
+  
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

@@ -18,6 +18,7 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import CryptionSelectMenu from '../screens/CryptionSelectMenuScreen';
 import CryptionPermutationScreen from '../screens/CryptionPermutationScreen';
+import CryptionPolybiusScreen from '../screens/CryptionPolybiusScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -48,6 +49,7 @@ function RootNavigator() {
 
       <Stack.Group>
         <Stack.Screen name="CryptionPermutation" component={CryptionPermutationScreen} options={{title: 'Перестановка'}}/>
+        <Stack.Screen name="CryptionPolybius" component={CryptionPolybiusScreen} options={{title: 'Шфир Полибия'}}/>
       </Stack.Group>
     </Stack.Navigator>
   );
