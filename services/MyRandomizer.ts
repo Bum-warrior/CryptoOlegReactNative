@@ -1,4 +1,4 @@
-import IPoint from "./IPoint";
+import IPoint from "../Interfaces/IPoint";
 
 class MyRandomizer {
   static generateKey(maxNumber : number){

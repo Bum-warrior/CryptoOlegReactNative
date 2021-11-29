@@ -101,14 +101,7 @@ function BottomTabNavigator() {
           ),
         })}
       />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="grav" color={color} />,
-        }}
-      />
+
       
     </BottomTab.Navigator>
   );

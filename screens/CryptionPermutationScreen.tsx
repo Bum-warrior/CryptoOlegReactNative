@@ -27,7 +27,7 @@ export default function CryptionPermutationScreen({ navigation }: RootTabScreenP
         placeholder="Введите текст"
         onChangeText={(text) =>{
           useSetinputText(text);
-          crypter.permutation(text, useSetKey, useSetAnswer)}}
+          Crypter.permutation(text, useSetKey, useSetAnswer)}}
       />
       <Text style={styles.title}>Ключ</Text>
       <TouchableOpacity onPress={() => CopyToClipboard(key)}>
@@ -39,7 +39,7 @@ export default function CryptionPermutationScreen({ navigation }: RootTabScreenP
         <Text style={styles.display}>{answer}</Text>
       </TouchableOpacity>
       <RoundedButton text="Обновить" onPress={() => 
-        crypter.permutation(inputText, useSetKey, useSetAnswer)}></RoundedButton>
+        Crypter.permutation(inputText, useSetKey, useSetAnswer)}></RoundedButton>
     </View>
   );
 }

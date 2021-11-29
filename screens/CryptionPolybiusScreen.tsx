@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { Button, ScrollView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import Crypter from '../services/Crypter';
 
@@ -19,8 +19,12 @@ export default function CryptionPolybiusScreen({ navigation }: RootTabScreenProp
     ['с','т','у','ф','х','ц'],
     ['ч','ш','щ','ъ','ы','ь'],
     ['э','ю','я','_','1','2']
-  ])
-  
+  ]);
+
+  let [keyBeforeCryption, setkeyBeforeCryption] = useState('');
+  let [keyAfterCryption, setkeyAfterCryption] = useState('');
+  let [wordBeforeCryption, setwordBeforeCryption] = useState('');
+  let [wordAfterCryption, setwordAfterCryption] = useState('');
 
   function CopyToClipboard(data: string) : void{
     Clipboard.setString(data);
@@ -28,6 +32,18 @@ export default function CryptionPolybiusScreen({ navigation }: RootTabScreenProp
 
   return (
     <View style={styles.main}>
+    <ScrollView >
+
+       <RoundedButton text="Перемешать" onPress={()=>{
+        setalphabet(MyRandomizer.shuffle2DArray([
+          ['а','б','в','г','д','е'],
+          ['ё','ж','з','и','й','к'],
+          ['л','м','н','о','п','р'],
+          ['с','т','у','ф','х','ц'],
+          ['ч','ш','щ','ъ','ы','ь'],
+          ['э','ю','я','_','1','2']
+        ]))
+      }}/> 
 
       <View style={styles.alphabet}>
         {/* 1 */}
@@ -212,33 +228,65 @@ export default function CryptionPolybiusScreen({ navigation }: RootTabScreenProp
         </View>
       </View>
 
-      <RoundedButton text="Перемешать алфавит" onPress={()=>{
-        setalphabet(MyRandomizer.shuffle2DArray([
-          ['а','б','в','г','д','е'],
-          ['ё','ж','з','и','й','к'],
-          ['л','м','н','о','п','р'],
-          ['с','т','у','ф','х','ц'],
-          ['ч','ш','щ','ъ','ы','ь'],
-          ['э','ю','я','_','1','2']
-        ]))
-      }}/>
+      
+
+      <Text style={styles.title}>
+        Исходный текст
+      </Text>
+      <TextInput 
+      onEndEditing={
+        ()=>Crypter.polybius(alphabet, wordBeforeCryption, setkeyBeforeCryption,
+         setkeyAfterCryption, setwordAfterCryption)}
+      onChangeText={(text)=>{setwordBeforeCryption(text)}}
+      style={styles.input}/>
+
+      <Text style={styles.title}>
+        Шифр 1
+      </Text>
+      <TouchableOpacity onPress={() => CopyToClipboard(keyBeforeCryption)}>
+        <Text style={styles.display}>{keyBeforeCryption}</Text>
+      </TouchableOpacity>
+      
+      <Text style={styles.title}>
+        Шифр 2
+      </Text>
+      <TouchableOpacity onPress={() => CopyToClipboard(keyAfterCryption)}>
+        <Text style={styles.display}>{keyAfterCryption}</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.title}>
+        Зашифрованный текст
+      </Text>
+      <TouchableOpacity onPress={() => CopyToClipboard(wordAfterCryption)}>
+        <Text style={styles.display}>{wordAfterCryption}</Text>
+      </TouchableOpacity>
+      <RoundedButton text="Зашифровать" onPress={()=>
+          Crypter.polybius(alphabet, wordBeforeCryption, setkeyBeforeCryption,
+          setkeyAfterCryption, setwordAfterCryption)}/>
+    </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
-    height: '80%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    paddingTop: 20,
+    
   },alphabet: {
     flex: 1,
-    padding: 30,
+    padding: 25,
     alignItems: 'stretch',
     justifyContent: 'flex-start',
-    margin: 10,
+    alignSelf: 'center',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    marginLeft: 12,
   },
   separator: {
     marginVertical: 30,
@@ -250,8 +298,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 8,
+
   },display: {
-    height: 40,
+    minHeight: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
@@ -266,6 +315,8 @@ const styles = StyleSheet.create({
   }, line: {
     display: 'flex',
     flexDirection: 'row',
-  }
+  }, fit: {
+    width: 'fitcontent'
+  }, 
 });
 

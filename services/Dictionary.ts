@@ -1,4 +1,4 @@
-import IRecord from "./IRecord";
+import IRecord from "../Interfaces/IRecord";
 
 class Dictionary{
   records : IRecord[];
