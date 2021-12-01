@@ -19,10 +19,10 @@ export default function CryptionChaiseScreen({ navigation }: RootTabScreenProps<
 
   let [wordBeforeCryption, setwordBeforeCryption] = useState('');
   let [wordAfterCryption, setwordAfterCryption] = useState('');
-  let [upLineBeforeCryption, setupLineBeforeCryption] = useState('12345123451234512345')
-  let [underLineBeforeCryption, setunderLineBeforeCryption] = useState('12345123451234512345')
-  let [upLineAfterCryption, setupLineAfterCryption] = useState('212345123451234512345')
-  let [underLineAfterCryption, setunderLineAfterCryption] = useState('212345123451234512345')
+  let [upLineBeforeCryption, setupLineBeforeCryption] = useState('')
+  let [underLineBeforeCryption, setunderLineBeforeCryption] = useState('')
+  let [upLineAfterCryption, setupLineAfterCryption] = useState('')
+  let [underLineAfterCryption, setunderLineAfterCryption] = useState('')
 
   function CopyToClipboard(data: string) : void{
     Clipboard.setString(data);

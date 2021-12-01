@@ -19,7 +19,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "flone.xyz.cryption"
     },
     "android": {
       "package": "flone.xyz.cryption",
