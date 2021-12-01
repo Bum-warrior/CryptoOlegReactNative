@@ -16,6 +16,7 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import CryptionChaiseScreen from '../screens/CryptionChaiseScreen';
 import CryptionSelectMenu from '../screens/CryptionSelectMenuScreen';
 import CryptionPermutationScreen from '../screens/CryptionPermutationScreen';
 import CryptionPolybiusScreen from '../screens/CryptionPolybiusScreen';
@@ -50,6 +51,7 @@ function RootNavigator() {
       <Stack.Group>
         <Stack.Screen name="CryptionPermutation" component={CryptionPermutationScreen} options={{title: 'Перестановка'}}/>
         <Stack.Screen name="CryptionPolybius" component={CryptionPolybiusScreen} options={{title: 'Шфир Полибия'}}/>
+        <Stack.Screen name="CryptionChaise" component={CryptionChaiseScreen} options={{title: 'Шфир Чейза'}}/>
       </Stack.Group>
     </Stack.Navigator>
   );

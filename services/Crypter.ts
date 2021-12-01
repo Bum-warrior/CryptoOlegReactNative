@@ -67,6 +67,102 @@ class Crypter{
     setWordAfterCryption(wordAfterCryption);
   }
 
+  public static chaise(alphabet: string[][], inputString :String,
+    upLineBeforeCryption: Function, underLineBeforeCryption: Function,
+    upLineAfterCryption: Function, underLineAfterCryption: Function,
+    outputString: Function){
+    inputString = inputString.replace(/\s+$/, '')
+    inputString = inputString.replace(/\s+/g, "_");
+    inputString = inputString.toLowerCase();
+    inputString = inputString.replace(/[ё]/g, 'е');
+    inputString = inputString.replace(/[й]/g, 'и');
+    inputString = inputString.replace(/[ъ]/g, 'ь');
+    
+    
+    let alphabetIndexIncrBy1 = [
+      [],
+      ['', 'а','б','в','г','д','е', 'ж', 'з', 'и', 'к'],
+      ['', 'л','м','н','о','п','р', 'с', 'т', 'у', 'ф'],
+      ['', 'х','ц','ч','ш','щ','ь', 'ы', 'э', 'ю', 'я'],
+    ]
+
+    let words = inputString.split('_');
+
+    let upCodeBeforeCryption ='';
+    let underCodeBeforeCryption ='';
+
+    words.forEach(word=>{
+      let wordCode =''
+      for (let i = 0; i < word.length; i++) {
+        const element = this.searchIndex(word[i], alphabet) ;
+        wordCode = wordCode.concat(element)
+      }
+      let upCode = '';
+      let underCode = '';
+      for (let i = 0; i < wordCode.length; i = i+2) {
+        
+        upCode = upCode.concat(wordCode[i])
+        underCode = underCode.concat(wordCode[i+1])
+      }
+      upCodeBeforeCryption = upCodeBeforeCryption.concat(upCode);
+      underCodeBeforeCryption = underCodeBeforeCryption.concat(underCode);
+      upCodeBeforeCryption = upCodeBeforeCryption.concat(' ');
+      underCodeBeforeCryption = underCodeBeforeCryption.concat(' ');
+    })
+    upCodeBeforeCryption = upCodeBeforeCryption.substring(0, upCodeBeforeCryption.length-1)
+    underCodeBeforeCryption = underCodeBeforeCryption.substring(0, underCodeBeforeCryption.length-1)
+    // 101 0112  upCodeBeforeCryption
+    // 056 5675  underCodeBeforeCryption
+    upCodeBeforeCryption = this.incrNumbersWithSpaces(upCodeBeforeCryption);
+    underCodeBeforeCryption = this.incrNumbersWithSpaces(underCodeBeforeCryption);
+
+    upLineBeforeCryption(upCodeBeforeCryption);
+    underLineBeforeCryption(underCodeBeforeCryption);
+    
+    
+    let underNumsAfterCryption = underCodeBeforeCryption.split(' ');
+    underNumsAfterCryption = underNumsAfterCryption.map(num=>{
+      return (+num*9).toString();
+    })
+    let upNumsAfterCryption = upCodeBeforeCryption.split(' ');
+    const PLACEHOLDER = '1'
+
+    for (let i = 0; i < upNumsAfterCryption.length; i++) {
+      if (upNumsAfterCryption[i].length != underNumsAfterCryption[i].length){
+        upNumsAfterCryption[i] = PLACEHOLDER + upNumsAfterCryption[i];
+      }
+    }
+
+    let queryUp = upNumsAfterCryption.join(' ');
+    queryUp = queryUp.replace(/\s+$/, '')
+    let queryUnder = underNumsAfterCryption.join(' ');
+    queryUnder = queryUnder.replace(/\s+$/, '')
+
+    upLineAfterCryption(queryUp)
+    underLineAfterCryption(queryUnder);
+    
+    let decodeIndexes: string[] = [];
+    for (let i = 0; i < queryUp.length; i++) {
+      decodeIndexes = decodeIndexes.concat(`${queryUp[i]}${queryUnder[i]}`)
+    }
+
+    let cryptedWord ='';
+
+    for (let i = 0; i < decodeIndexes.length; i++) {
+      const element = decodeIndexes[i].replace(/\s+/g, ' ');
+      let coordLeft = (element[0] == '0') ? '10': element[0];
+      let coordRigth = (element[1] == '0') ? '10': element[1];
+
+      if (element === ' '){
+        cryptedWord = cryptedWord.concat(" ")
+      } else {
+        cryptedWord = cryptedWord.concat(alphabetIndexIncrBy1[+coordLeft][+coordRigth]);
+      }
+    }
+
+    outputString(cryptedWord);
+  }
+
   private static searchIndex(element: string | number, array: string[][] | number[][]): string{
     for(let i = 0; i < array.length; i++){
       for(let j = 0; j < array[i].length; j++){
@@ -75,7 +171,24 @@ class Crypter{
         }
       }
     }
-    return `ERROR`
+    return ` `
+  }
+
+  private static incrNumbersWithSpaces(inputString: string){
+    let output = ''
+    for (let i = 0; i < inputString.length; i++) {
+      const element = inputString[i];
+      if(element === " "){
+        output = output.concat(" ")
+      } else {
+        let number = (+element+1).toString()
+        if (number == '10'){
+          number = '0';
+        }
+        output = output.concat(number)
+      }
+    }
+    return output;
   }
 }
 

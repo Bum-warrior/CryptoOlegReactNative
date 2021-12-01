@@ -19,6 +19,7 @@ export type RootStackParamList = {
   NotFound: undefined;
   CryptionPermutation: undefined;
   CryptionPolybius: undefined;
+  CryptionChaise: undefined;
 };
 
 

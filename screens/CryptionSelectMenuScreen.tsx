@@ -23,6 +23,14 @@ export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'C
           Шифр Полибия
         </Text>
       </Pressable>
+
+      <Pressable onPress={()=>{
+        navigation.navigate('CryptionChaise')
+      }}>
+        <Text style={styles.item}>
+          Шифр Чейза
+        </Text>
+      </Pressable>
     </View>
   )
 }
