@@ -163,6 +163,85 @@ class Crypter{
     outputString(cryptedWord);
   }
 
+  public static MagicSquare(startString: string){
+    
+    
+    let squares = [];
+    let stringForSquare = startString.match(/.{1,16}/g)
+    
+    console.log(stringForSquare)
+    if(stringForSquare !== null){
+      for(let i = 0; i < stringForSquare?.length; i++){
+        const stringForOneSquare = stringForSquare[i];
+        let tempField = this.getField4x4();
+        for(let i=0; i < stringForOneSquare.length; i++){
+          const symbol = stringForOneSquare[i];
+          switch (i) {
+            
+            case 0:
+              tempField[3][3] = symbol;
+              break;
+            case 1:
+              tempField[0][2] = symbol;
+              break;
+            case 2:
+              tempField[0][1] = symbol;
+              break;
+            case 3:
+              tempField[3][0] = symbol;
+              break;
+            case 4:
+              tempField[1][0] = symbol;
+              break;
+            case 5:
+              tempField[2][1] = symbol;
+              break;
+            case 6:
+              tempField[2][2] = symbol;
+              break;
+            case 7:
+              tempField[1][3] = symbol;
+              break;
+            case 8:
+              tempField[2][0] = symbol;
+              break;
+            case 9:
+              tempField[1][1] = symbol;
+              break;            
+            case 10:
+              tempField[1][2] = symbol;
+              break;
+            case 11:
+              tempField[2][3] = symbol;
+              break;            
+            case 12:
+              tempField[0][3] = symbol;
+              break;
+            case 13:
+              tempField[3][2] = symbol;
+              break;            
+            case 14:
+              tempField[3][1] = symbol;
+              break;
+            case 15:
+              tempField[0][0] = symbol;
+              break;
+            default:
+              break;  
+          }
+        }
+        squares.push(tempField)
+      }
+      let finalWord : string= '';
+      squares.map((oneSquare) => {
+        oneSquare.map((oneLine) => {
+          finalWord = finalWord + oneLine.join('')
+        })
+      })
+      return {squares, finalWord};
+    }
+  }
+
   private static searchIndex(element: string | number, array: string[][] | number[][]): string{
     for(let i = 0; i < array.length; i++){
       for(let j = 0; j < array[i].length; j++){
@@ -172,6 +251,15 @@ class Crypter{
       }
     }
     return ` `
+  }
+
+  private static getField4x4(){
+    return [
+      ['','','',''],
+      ['','','',''],
+      ['','','',''],
+      ['','','',''],
+    ]
   }
 
   private static incrNumbersWithSpaces(inputString: string){

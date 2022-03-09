@@ -20,10 +20,16 @@ export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'C
         navigation.navigate('CryptionPolybius')
       }}>
         <Text style={styles.item}>
-          Шифр Полибия
+          Шифр Полибия / усложненный  
         </Text>
       </Pressable>
-
+      <Pressable onPress={()=>{
+        navigation.navigate('CryptionMagicSquare')
+      }}>
+        <Text style={styles.item}>
+          Магический квадрат
+        </Text>
+      </Pressable>
       <Pressable onPress={()=>{
         navigation.navigate('CryptionChaise')
       }}>

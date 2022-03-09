@@ -22,6 +22,7 @@ import CryptionPermutationScreen from '../screens/CryptionPermutationScreen';
 import CryptionPolybiusScreen from '../screens/CryptionPolybiusScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import CryptionMagicSquareScreen from '../screens/CryptionMagicSquareScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -52,6 +53,7 @@ function RootNavigator() {
         <Stack.Screen name="CryptionPermutation" component={CryptionPermutationScreen} options={{title: 'Перестановка'}}/>
         <Stack.Screen name="CryptionPolybius" component={CryptionPolybiusScreen} options={{title: 'Шфир Полибия'}}/>
         <Stack.Screen name="CryptionChaise" component={CryptionChaiseScreen} options={{title: 'Шфир Чейза'}}/>
+        <Stack.Screen name="CryptionMagicSquare" component={CryptionMagicSquareScreen} options={{title: 'Шфир Магического квадрата'}}/>
       </Stack.Group>
     </Stack.Navigator>
   );
