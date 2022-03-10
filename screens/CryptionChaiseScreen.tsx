@@ -28,9 +28,20 @@ export default function CryptionChaiseScreen({ navigation }: RootTabScreenProps<
     Clipboard.setString(data);
   }
 
+  function shuffle(){
+    const newAlphabet = MyRandomizer.shuffle2DArray([
+      ['а','б','в','г','д','е', 'ж', 'з', 'и', 'к'],
+      ['л','м','н','о','п','р', 'с', 'т', 'у', 'ф'],
+      ['х','ц','ч','ш','щ','ь', 'ы', 'э', 'ю', 'я'],
+    ]);
+    setalphabet(newAlphabet)
+  }
+  
   return (
     <View style={styles.main}>
     <ScrollView >
+    
+    <RoundedButton text="Перемешать" onPress={shuffle}/> 
 
       <View style={styles.alphabet}>
         {/* 1 */}

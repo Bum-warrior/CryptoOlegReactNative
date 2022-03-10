@@ -168,8 +168,7 @@ class Crypter{
     
     let squares = [];
     let stringForSquare = startString.match(/.{1,16}/g)
-    
-    console.log(stringForSquare)
+
     if(stringForSquare !== null){
       for(let i = 0; i < stringForSquare?.length; i++){
         const stringForOneSquare = stringForSquare[i];

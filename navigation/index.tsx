@@ -53,7 +53,7 @@ function RootNavigator() {
       <Stack.Group>
         <Stack.Screen name="CryptionPermutation" component={CryptionPermutationScreen} options={{title: 'Перестановка'}}/>
         <Stack.Screen name="CryptionPolybius" component={CryptionPolybiusScreen} options={{title: 'Шифр Полибия'}}/>
-        <Stack.Screen name="CryptionChaise" component={CryptionChaiseScreen} options={{title: 'Шифр Чейза'}}/>
+        <Stack.Screen name="CryptionChaise" component={CryptionChaiseScreen} options={{title: 'Шифр Чейза / усложненный'}}/>
         <Stack.Screen name="CryptionMagicSquare" component={CryptionMagicSquareScreen} options={{title: 'Шифр Магического квадрата'}}/>
         <Stack.Screen name="CryptionTritemius" component={CryptionTritemiusScreen} options={{title: 'Шифр Тритемия'}}/>
       </Stack.Group>

@@ -21,9 +21,11 @@ class MyRandomizer {
   }
 
   static shuffle2DArray(inputArray: string[][]): string[][]{
-    for(let i = 0; i < 50; i++){
-      let first : IPoint = {x: this.getRandomInt(6), y: this.getRandomInt(6)}
-      let second : IPoint = {x: this.getRandomInt(6), y: this.getRandomInt(6)}
+    let xSize = inputArray.length;
+    let ySize = inputArray[0].length;
+    for(let i = 0; i < 20; i++){
+      let first : IPoint = {x: this.getRandomInt(xSize), y: this.getRandomInt(ySize)}
+      let second : IPoint = {x: this.getRandomInt(xSize), y: this.getRandomInt(ySize)}
 
       let buffer = inputArray[first.x][first.y];
       inputArray[first.x][first.y] = inputArray[second.x][second.y];

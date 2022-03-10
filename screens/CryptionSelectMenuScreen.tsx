@@ -34,7 +34,7 @@ export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'C
         navigation.navigate('CryptionChaise')
       }}>
         <Text style={styles.item}>
-          Шифр Чейза
+          Шифр Чейза / усложненный
         </Text>
       </Pressable>
       <Pressable onPress={()=>{
