@@ -242,6 +242,38 @@ class Crypter{
     }
   }
 
+  public static Tritemius(startString: string){
+    startString = startString.toLowerCase();
+    if(startString !== null){
+      let finalStringOfGroup = '';
+      let letterNumber = 1;
+        for(let i =0; i< startString.length; i++){
+          const letter = startString[i];
+          switch (letter) {
+            case ' ':
+              finalStringOfGroup += letter
+              break;
+          
+            default:
+              
+              finalStringOfGroup += this.RotateSymbolByN(letter, letterNumber);
+              letterNumber++;
+              if(letterNumber === 34) letterNumber = 1;
+              break;
+          }
+        }
+        return(finalStringOfGroup)
+    }
+    return ''
+  }
+
+  private static RotateSymbolByN(symbol: string, n: number){
+    const usualAlphabet = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я', 'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я'];
+    let firstIndex = usualAlphabet.indexOf(symbol);
+    let newLetter = usualAlphabet[firstIndex+n];
+    return newLetter;
+  }
+
   private static searchIndex(element: string | number, array: string[][] | number[][]): string{
     for(let i = 0; i < array.length; i++){
       for(let j = 0; j < array[i].length; j++){
