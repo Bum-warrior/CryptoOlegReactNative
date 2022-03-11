@@ -22,6 +22,7 @@ export type RootStackParamList = {
   CryptionChaise: undefined;
   CryptionMagicSquare: undefined;
   CryptionTritemius: undefined;
+  CryptionBlockPermutation: undefined;
 };
 
 

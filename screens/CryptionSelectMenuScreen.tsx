@@ -44,6 +44,13 @@ export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'C
           Шифр Тритемия
         </Text>
       </Pressable>
+      <Pressable onPress={()=>{
+        navigation.navigate('CryptionBlockPermutation')
+      }}>
+        <Text style={styles.item}>
+          Шифр блочной перестановки
+        </Text>
+      </Pressable>
     </View>
   )
 }

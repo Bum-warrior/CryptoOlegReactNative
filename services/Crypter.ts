@@ -3,7 +3,46 @@ import Dictionary from "./Dictionary";
 import MyRandomizer from "./MyRandomizer";
 
 class Crypter{
-  
+  public static blockPermutation(inputString :String, keyString: string){
+    const numericKey = keyString.split('');
+    //[ '1', '2', '3', '4' ]
+    
+    let chunkRegex = new RegExp(`.{${numericKey.length}}`, 'g');
+    //append 1 if cant divide by ley length
+    inputString = inputString.replace(/ +/g, "_");
+    if(inputString.length%numericKey.length!==0){
+      for(let i = 0; i < (inputString.length%numericKey.length); i++){
+        console.log("++++++")
+        inputString = inputString + '_';
+      }
+    }
+    
+    let chunks = inputString.match(chunkRegex);
+    let cryptedChunksArray : string [] = [];
+    //[ 'MA', 'KA', 'RO', 'N1' ]
+    chunks?.map((chunk) => {
+      let dict = new Dictionary();
+      let splitedString = chunk.split('');
+      let keyForLetter = 0;
+      splitedString?.forEach(item => {
+        dict.addElement({word: item, key: keyForLetter})
+        ++keyForLetter;
+      })
+      let records = dict.getRecords();
+      console.log(records)
+      let key = numericKey.map((letter) => {
+        let numb = Number(letter)
+        let key = numb - 1;
+        return key
+      });
+      let cryptedChunk = new Array<string>(key.length);
+      records.map((record, index) => {
+        cryptedChunk[key[index]] = record.word;
+      })
+      cryptedChunksArray.push(cryptedChunk.join(''))
+    })
+    return cryptedChunksArray.join('|')
+  }
   //шифр перестановки
   public static permutation(inputString :String, setKey : Function, setAsnwer : Function){
     //append 1 if cant divide by 2
@@ -252,7 +291,30 @@ class Crypter{
             case ' ':
               finalStringOfGroup += letter
               break;
-          
+            case '.':
+              finalStringOfGroup += letter
+              break;
+            case ',':
+              finalStringOfGroup += letter
+              break;
+            case '!':
+              finalStringOfGroup += letter
+              break;
+            case '-':
+              finalStringOfGroup += letter
+              break;
+            case ':':
+              finalStringOfGroup += letter
+              break;
+            case ';':
+              finalStringOfGroup += letter
+              break;
+            case '"':
+              finalStringOfGroup += letter
+              break;
+            case '\'':
+              finalStringOfGroup += letter
+              break;
             default:
               
               finalStringOfGroup += this.RotateSymbolByN(letter, letterNumber);
