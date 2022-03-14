@@ -24,7 +24,8 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 import CryptionMagicSquareScreen from '../screens/CryptionMagicSquareScreen';
 import CryptionTritemiusScreen from '../screens/CryptionTritemiusScreen';
-import CryptionBlockPermutationScreen from '../screens/CryptionBlockPermutationScreen';
+import CryptionBlockPermutationScreen from '../screens/CryptionBlockPermutationReverseScreen';
+import CryptionBlockPermutationReverseScreen from '../screens/CryptionBlockPermutationReverseScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -58,6 +59,7 @@ function RootNavigator() {
         <Stack.Screen name="CryptionMagicSquare" component={CryptionMagicSquareScreen} options={{title: 'Шифр Магического квадрата'}}/>
         <Stack.Screen name="CryptionTritemius" component={CryptionTritemiusScreen} options={{title: 'Шифр Тритемия'}}/>
         <Stack.Screen name="CryptionBlockPermutation" component={CryptionBlockPermutationScreen} options={{title: 'Шифр Блочной перестановки'}}/>
+        <Stack.Screen name="CryptionBlockPermutationReverse" component={CryptionBlockPermutationReverseScreen} options={{title: 'Расшифровка блочной перестановки'}}/>
       </Stack.Group>
     </Stack.Navigator>
   );

@@ -13,7 +13,6 @@ export default function CryptionBlockPermutationScreen({ navigation }: RootTabSc
   let [answer, useSetAnswer] = React.useState("");
   let [key, useSetKey] = React.useState("");
   let [inputText, useSetinputText] = React.useState("");
-  const crypter = new Crypter();
 
   function CopyToClipboard(data: string) : void{
     Clipboard.setString(data);
@@ -44,7 +43,7 @@ export default function CryptionBlockPermutationScreen({ navigation }: RootTabSc
         <Text style={styles.display}>{answer}</Text>
       </TouchableOpacity>
       <RoundedButton text="Зашифровать" onPress={() => {
-        let crypted = Crypter.blockPermutation(inputText, key)
+        let crypted = Crypter.blockPermutationReverse(inputText, key)
         useSetAnswer(crypted)
       }}/>
     </View>

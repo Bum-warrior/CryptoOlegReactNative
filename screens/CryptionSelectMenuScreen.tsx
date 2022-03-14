@@ -51,6 +51,13 @@ export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'C
           Шифр блочной перестановки
         </Text>
       </Pressable>
+      <Pressable onPress={()=>{
+        navigation.navigate('CryptionBlockPermutationReverse')
+      }}>
+        <Text style={styles.item}>
+          Расшифровка блочной перестановки
+        </Text>
+      </Pressable>
     </View>
   )
 }
