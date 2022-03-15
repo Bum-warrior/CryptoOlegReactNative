@@ -366,6 +366,67 @@ class Crypter{
     }
     return ''
   }
+  
+      static Gamma(inputText: string, key: string){
+        let alphabet = ['НИКТО НЕ ДОЛЖЕН ЭТО ВИДЕТЬ', 'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я','_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        let inputTextArray = inputText.replace(' ', '_')
+            .toLowerCase()    
+            .split('');
+        let keyArray = key.replace(' ', '_')
+            .toLowerCase()    
+            .split('');
+
+        let inputTextIndexArray : number[] = [];
+        let keyIndexArray : number[] = [];
+
+        inputTextArray.map((letter) => {
+            let index = alphabet.indexOf(letter)
+            inputTextIndexArray.push(index);
+        })
+        keyArray.map((letter) => {
+            let index = alphabet.indexOf(letter)
+            keyIndexArray.push(index);
+        })
+
+        console.log(inputTextIndexArray.join('/'));
+        console.log(keyIndexArray.join('/'));
+
+        let difference = inputTextArray.length - keyArray.length;
+
+        let startLength = keyIndexArray.length;
+        let indexToAdd = 0;
+        for(let i = 0; i < difference; i++){
+            keyIndexArray.push(keyIndexArray[indexToAdd]);
+            indexToAdd++;
+            if((indexToAdd+1) > startLength){
+                indexToAdd = 0;
+            }
+        }
+        // 44%44 => 0
+        // inputTextIndexArray
+        console.log(keyIndexArray.join('/'));
+        let TG : number[] = [];
+        for(let i = 0; i < keyIndexArray.length; i++){
+            TG.push(keyIndexArray[i] + inputTextIndexArray[i]);
+        }
+        console.log(TG.join('/'))
+
+        let mod : number[] = [];
+        TG.map((element) => {
+            if (element === 44){
+                mod.push(44)
+            }else{
+                mod.push(element%44)
+            }
+        });
+        console.log(mod.join('/'))
+
+        let finalArray :string[] = [];
+        mod.map((index) => {
+            finalArray.push(alphabet[index])
+        })
+        console.log(finalArray.join(''))
+    }
 
   private static RotateSymbolByN(symbol: string, n: number){
     const usualAlphabet = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я', 'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я'];
