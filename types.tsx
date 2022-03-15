@@ -24,6 +24,7 @@ export type RootStackParamList = {
   CryptionTritemius: undefined;
   CryptionBlockPermutation: undefined;
   CryptionBlockPermutationReverse: undefined;
+  CryptionGamma: undefined;
 };
 
 

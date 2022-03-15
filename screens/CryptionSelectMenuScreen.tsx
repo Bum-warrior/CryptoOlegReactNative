@@ -1,10 +1,11 @@
 import { Text, View } from "../components/Themed";
 import * as React from 'react';
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, ScrollView, StyleSheet } from "react-native";
 import { RootTabParamList, RootTabScreenProps } from "../types";
 
 export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'CryptionSelectMenu'>){
   return(
+    <ScrollView>
     <View>
       <Text style={styles.title}>
         Выберите шифрование
@@ -58,7 +59,15 @@ export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'C
           Расшифровка блочной перестановки
         </Text>
       </Pressable>
+      <Pressable onPress={()=>{
+        navigation.navigate('CryptionGamma')
+      }}>
+        <Text style={styles.item}>
+          Гаммирование
+        </Text>
+      </Pressable>
     </View>
+    </ScrollView>
   )
 }
 

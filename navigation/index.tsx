@@ -26,6 +26,7 @@ import CryptionMagicSquareScreen from '../screens/CryptionMagicSquareScreen';
 import CryptionTritemiusScreen from '../screens/CryptionTritemiusScreen';
 import CryptionBlockPermutationScreen from '../screens/CryptionBlockPermutationReverseScreen';
 import CryptionBlockPermutationReverseScreen from '../screens/CryptionBlockPermutationReverseScreen';
+import CryptionGammaScreen from '../screens/CryptionGammaScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -60,6 +61,7 @@ function RootNavigator() {
         <Stack.Screen name="CryptionTritemius" component={CryptionTritemiusScreen} options={{title: 'Шифр Тритемия'}}/>
         <Stack.Screen name="CryptionBlockPermutation" component={CryptionBlockPermutationScreen} options={{title: 'Шифр Блочной перестановки'}}/>
         <Stack.Screen name="CryptionBlockPermutationReverse" component={CryptionBlockPermutationReverseScreen} options={{title: 'Расшифровка блочной перестановки'}}/>
+        <Stack.Screen name="CryptionGamma" component={CryptionGammaScreen} options={{title: 'Гаммирование'}}/>
       </Stack.Group>
     </Stack.Navigator>
   );
