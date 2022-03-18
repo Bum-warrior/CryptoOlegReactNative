@@ -66,6 +66,13 @@ export default function CryptionSelectMenu({ navigation }: RootTabScreenProps<'C
           Гаммирование
         </Text>
       </Pressable>
+      <Pressable onPress={()=>{
+        navigation.navigate('CryptionGammaReverse')
+      }}>
+        <Text style={styles.item}>
+          Расшифровка гаммирования
+        </Text>
+      </Pressable>
     </View>
     </ScrollView>
   )

@@ -368,7 +368,7 @@ class Crypter{
   }
   
   static Gamma(inputText: string, key: string){
-    let alphabet = ['НИКТО НЕ ДОЛЖЕН ЭТО ВИДЕТЬ', 'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я','_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const alphabet = ['НИКТО НЕ ДОЛЖЕН ЭТО ВИДЕТЬ', 'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я','_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     let inputTextArray = inputText.replace(/\s/gm, '_')
         .toLowerCase()
         .split('');
@@ -414,6 +414,76 @@ class Crypter{
             mod.push(44)
         }else{
             mod.push(element%44)
+        }
+    });
+
+    let cryptedArray :string[] = [];
+    mod.map((index) => {
+        cryptedArray.push(alphabet[index])
+    })
+
+    let grid : string[][] = [];
+    for (let i = 0; i < cryptedArray.length; i++){
+      let column: string[] = [];
+      column.push(inputTextArray[i]);
+      column.push(keyArray[i]);
+      column.push(inputTextIndexArray[i].toString());
+      column.push(keyIndexArray[i].toString());
+      column.push(TG[i].toString());
+      column.push(mod[i].toString());
+      column.push(cryptedArray[i]);
+      grid.push(column);
+    }
+    return grid;
+  }
+
+  static GammaReverse(inputText: string, key: string){
+    const alphabet = ['НИКТО НЕ ДОЛЖЕН ЭТО ВИДЕТЬ', 'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я','_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let inputTextArray = inputText.replace(/\s/gm, '_')
+        .toLowerCase()
+        .split('');
+    let keyArray = key.replace(' ', '_')
+        .toLowerCase()
+        .split('');
+
+    let inputTextIndexArray : number[] = [];
+    let keyIndexArray : number[] = [];
+
+    inputTextArray.map((letter) => {
+        let index = alphabet.indexOf(letter);
+        inputTextIndexArray.push(index);
+    })
+    keyArray.map((letter) => {
+        let index = alphabet.indexOf(letter);
+        keyIndexArray.push(index);
+    })
+
+
+    let difference = inputTextArray.length - keyArray.length;
+
+    let startLength = keyIndexArray.length;
+    let indexToAdd = 0;
+    for(let i = 0; i < difference; i++){
+        keyIndexArray.push(keyIndexArray[indexToAdd]);
+        keyArray.push(keyArray[indexToAdd]);
+        indexToAdd++;
+        if((indexToAdd+1) > startLength){
+            indexToAdd = 0;
+        }
+    }
+    // 44%44 => 0
+    // inputTextIndexArray
+    let TG : number[] = [];
+    for(let i = 0; i < keyIndexArray.length; i++){
+      TG.push(inputTextIndexArray[i] - keyIndexArray[i]);
+    }
+
+    let mod : number[] = [];
+    TG.map((element) => {
+        if (element < 1){
+            mod.push(element+44)
+        }else{
+            mod.push(element)
         }
     });
 
